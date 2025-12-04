@@ -1,0 +1,108 @@
+syntax = "proto3";
+
+package distributedstore;
+
+service KeyValueStore {
+  rpc put(PutRequest) returns (PutResponse);
+
+  rpc get(GetRequest) returns (GetResponse);
+
+  rpc slowDown(SlowDownRequest) returns (SlowDownResponse);
+
+  rpc restore(RestoreRequest) returns (RestoreResponse);
+
+  rpc doCommit(DoCommitRequest) returns (DoCommitResponse);
+
+  rpc canCommit(CanCommitRequest) returns (CanCommitResponse);
+
+  rpc quorumRequest(QuorumRequest) returns (QuorumResponse);
+
+  rpc heartbeat(Empty) returns (HeartbeatResponse);  // Método de ping añadido
+
+  rpc registerNode(RegisterNodeRequest) returns (RegisterNodeResponse);  // Método para registrar nodos
+
+  rpc abort(AbortRequest) returns (AbortResponse);  // Método abort añadido
+}
+
+message PutRequest {
+  string key = 1;
+  string value = 2;
+}
+
+message PutResponse {
+  bool success = 1;
+}
+
+message GetRequest {
+  string key = 1;
+}
+
+message GetResponse {
+  string value = 1;
+  bool found = 2;
+}
+
+message SlowDownRequest {
+  int32 seconds = 1;
+}
+
+message SlowDownResponse {
+  bool success = 1;
+}
+
+message RestoreRequest {}
+
+message RestoreResponse {
+  bool success = 1;
+}
+
+message DoCommitRequest {
+  string key = 1;
+  string value = 2;
+}
+
+message DoCommitResponse {
+  bool success = 1;
+}
+
+message CanCommitRequest {
+  string key = 1;
+}
+
+message CanCommitResponse {
+  bool canCommit = 1;
+}
+
+message QuorumRequest {
+  string operation = 1;
+}
+
+message QuorumResponse {
+  int32 weight = 1;
+  bool success = 2;
+  int32 id = 3;
+  string ip = 4;
+  int32 port = 5;
+}
+
+message Empty {}
+
+message HeartbeatResponse {
+  bool alive = 1;
+}
+
+message RegisterNodeRequest {
+  string nodeAddress = 1;
+}
+
+message RegisterNodeResponse {
+  bool success = 1;
+}
+
+message AbortRequest {
+  string key = 1;
+}
+
+message AbortResponse {
+  bool success = 1;
+}
