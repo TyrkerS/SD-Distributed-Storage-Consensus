@@ -1,4 +1,4 @@
-# DISTRIBUTED STORAGEe & CONSENSUS
+# DISTRIBUTED STORAGE & CONSENSUS
  
 **Language:** Python  
 **README Language:** English
@@ -31,7 +31,7 @@ Skills gained:
 ## 📁 Project Structure
 
 ```
-SDP2_Vi/
+SD-Distributed-Storage-Consensus/
 ├── centralized.py               → Centralized storage runner (master + slaves)
 ├── centralized_config.yaml      → Config for centralized setup (master + slaves)
 ├── decentralized.py             → Decentralized node runner / orchestrator
